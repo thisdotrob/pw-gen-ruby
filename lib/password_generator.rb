@@ -1,3 +1,3 @@
-def generate_password
-  ''
+def generate_password(length)
+  ' ' * length
 end
