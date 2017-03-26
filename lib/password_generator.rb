@@ -1,3 +1,8 @@
-def generate_password(length, uppercase:)
-  'A' * length
+def generate_password(length, uppercase:, lowercase:)
+  char = if uppercase
+           'A'
+         else
+           'a'
+         end
+  char * length
 end
