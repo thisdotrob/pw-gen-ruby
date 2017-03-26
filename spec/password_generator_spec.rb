@@ -13,6 +13,11 @@ describe '#generate_password' do
     end
   end
 
+  it "should not repeat a character more than 3 times in a row" do
+    password = generate_password(100, lowercase: true, uppercase: true, number: true, special: true)
+    expect(password).to_not match(/(.)\1{3,}/)
+  end
+
   context 'when \'uppercase\' is true' do
     it 'returns a password of only uppercase characters' do
       password = generate_password(15, lowercase: false, uppercase: true, number: false, special: false)
