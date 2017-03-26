@@ -7,9 +7,10 @@ describe '#generate_password' do
   end
 
   it 'returns a password of the specified length' do
-    test_length = 33
-    password = generate_password(test_length, lowercase: true, uppercase: true, number: false, special: false)
-    expect(password.length).to eq(test_length)
+    for length in 8..11 do
+      password = generate_password(length, lowercase: true, uppercase: true, number: false, special: false)
+      expect(password.length).to eq(length)
+    end
   end
 
   context 'when \'uppercase\' is true' do
