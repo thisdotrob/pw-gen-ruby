@@ -40,4 +40,18 @@ describe '#generate_password' do
       expect(password).to match(/^[!$%&*@^]+$/)
     end
   end
+
+  context 'when \'uppercase\' and \'lowercase\' are true' do
+    it 'returns a password containing only uppercase and lowercase characters' do
+      password = generate_password(15, uppercase: true, lowercase: true, number: false, special: false)
+      expect(password).to match(/^[a-zA-z]+$/)
+    end
+  end
+
+  context 'when \'number\' and \'special\' are true' do
+    it 'returns a password containing only numeric and special characters' do
+      password = generate_password(15, uppercase: false, lowercase: false, number: true, special: true)
+      expect(password).to match(/^[!$%&*@^0-9]+$/)
+    end
+  end
 end
