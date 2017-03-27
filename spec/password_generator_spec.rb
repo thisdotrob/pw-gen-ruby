@@ -7,13 +7,13 @@ describe '#generate_password' do
   end
 
   it 'returns a password of the specified length' do
-    for length in 8..11 do
+    (8..11).each do |length|
       password = generate_password(length, lowercase: true, uppercase: true, number: false, special: false)
       expect(password.length).to eq(length)
     end
   end
 
-  it "should not repeat a character more than 3 times in a row" do
+  it 'should not repeat a character more than 3 times in a row' do
     password = generate_password(100, lowercase: true, uppercase: true, number: true, special: true)
     expect(password).to_not match(/(.)\1{3,}/)
   end
