@@ -18,6 +18,19 @@ describe '#generate_password' do
     expect(password).to_not match(/(.)\1{3,}/)
   end
 
+  it 'should generate a unique password on each call' do
+    password_a = generate_password(20, lowercase: true, uppercase: true, number: true, special: true)
+    password_b = generate_password(20, lowercase: true, uppercase: true, number: true, special: true)
+    password_c = generate_password(20, lowercase: true, uppercase: true, number: true, special: true)
+    password_d = generate_password(20, lowercase: true, uppercase: true, number: true, special: true)
+    expect(password_a).to_not eq(password_b)
+    expect(password_a).to_not eq(password_c)
+    expect(password_a).to_not eq(password_d)
+    expect(password_b).to_not eq(password_c)
+    expect(password_b).to_not eq(password_d)
+    expect(password_c).to_not eq(password_d)
+  end
+
   context 'when \'uppercase\' is true' do
     it 'returns a password of only uppercase characters' do
       password = generate_password(15, lowercase: false, uppercase: true, number: false, special: false)
