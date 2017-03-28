@@ -13,28 +13,28 @@ describe '#generate_password' do
     end
   end
 
-  it 'should not repeat a character more than 3 times in a row' do
-    password = generate_password(100, lowercase: true, uppercase: true, number: true, special: true)
-    expect(password).to_not match(/(.)\1{3,}/)
-  end
-
-  it 'should generate a unique password on each call' do
-    password_a = generate_password(20, lowercase: true, uppercase: true, number: true, special: true)
-    password_b = generate_password(20, lowercase: true, uppercase: true, number: true, special: true)
-    password_c = generate_password(20, lowercase: true, uppercase: true, number: true, special: true)
-    password_d = generate_password(20, lowercase: true, uppercase: true, number: true, special: true)
-    expect(password_a).to_not eq(password_b)
-    expect(password_a).to_not eq(password_c)
-    expect(password_a).to_not eq(password_d)
-    expect(password_b).to_not eq(password_c)
-    expect(password_b).to_not eq(password_d)
-    expect(password_c).to_not eq(password_d)
-  end
-
   context 'when \'uppercase\' is true' do
     it 'returns a password of only uppercase characters' do
       password = generate_password(15, lowercase: false, uppercase: true, number: false, special: false)
       expect(password).to match(/^[A-Z]+$/)
+    end
+
+    it 'should not repeat a character more than 3 times in a row' do
+      password = generate_password(100, lowercase: false, uppercase: true, number: false, special: false)
+      expect(password).to_not match(/(.)\1{3,}/)
+    end
+
+    it 'should generate a unique password on each call' do
+      password_a = generate_password(20, lowercase: false, uppercase: true, number: false, special: false)
+      password_b = generate_password(20, lowercase: false, uppercase: true, number: false, special: false)
+      password_c = generate_password(20, lowercase: false, uppercase: true, number: false, special: false)
+      password_d = generate_password(20, lowercase: false, uppercase: true, number: false, special: false)
+      expect(password_a).to_not eq(password_b)
+      expect(password_a).to_not eq(password_c)
+      expect(password_a).to_not eq(password_d)
+      expect(password_b).to_not eq(password_c)
+      expect(password_b).to_not eq(password_d)
+      expect(password_c).to_not eq(password_d)
     end
   end
 
@@ -43,6 +43,24 @@ describe '#generate_password' do
       password = generate_password(15, uppercase: false, lowercase: true, number: false, special: false)
       expect(password).to match(/^[a-z]+$/)
     end
+
+    it 'should not repeat a character more than 3 times in a row' do
+      password = generate_password(100, uppercase: false, lowercase: true, number: false, special: false)
+      expect(password).to_not match(/(.)\1{3,}/)
+    end
+
+    it 'should generate a unique password on each call' do
+      password_a = generate_password(20, uppercase: false, lowercase: true, number: false, special: false)
+      password_b = generate_password(20, uppercase: false, lowercase: true, number: false, special: false)
+      password_c = generate_password(20, uppercase: false, lowercase: true, number: false, special: false)
+      password_d = generate_password(20, uppercase: false, lowercase: true, number: false, special: false)
+      expect(password_a).to_not eq(password_b)
+      expect(password_a).to_not eq(password_c)
+      expect(password_a).to_not eq(password_d)
+      expect(password_b).to_not eq(password_c)
+      expect(password_b).to_not eq(password_d)
+      expect(password_c).to_not eq(password_d)
+    end
   end
 
   context 'when \'number\' is true' do
@@ -50,12 +68,48 @@ describe '#generate_password' do
       password = generate_password(15, uppercase: false, lowercase: false, number: true, special: false)
       expect(password).to match(/^[0-9]+$/)
     end
+
+    it 'should not repeat a character more than 3 times in a row' do
+      password = generate_password(100, uppercase: false, lowercase: false, number: true, special: false)
+      expect(password).to_not match(/(.)\1{3,}/)
+    end
+
+    it 'should generate a unique password on each call' do
+      password_a = generate_password(20, uppercase: false, lowercase: false, number: true, special: false)
+      password_b = generate_password(20, uppercase: false, lowercase: false, number: true, special: false)
+      password_c = generate_password(20, uppercase: false, lowercase: false, number: true, special: false)
+      password_d = generate_password(20, uppercase: false, lowercase: false, number: true, special: false)
+      expect(password_a).to_not eq(password_b)
+      expect(password_a).to_not eq(password_c)
+      expect(password_a).to_not eq(password_d)
+      expect(password_b).to_not eq(password_c)
+      expect(password_b).to_not eq(password_d)
+      expect(password_c).to_not eq(password_d)
+    end
   end
 
   context 'when \'special\' is true' do
     it 'returns a password containing only special characters' do
       password = generate_password(15, uppercase: false, lowercase: false, number: false, special: true)
       expect(password).to match(/^[!$%&*@^]+$/)
+    end
+
+    it 'should not repeat a character more than 3 times in a row' do
+      password = generate_password(100, uppercase: false, lowercase: false, number: false, special: true)
+      expect(password).to_not match(/(.)\1{3,}/)
+    end
+
+    it 'should generate a unique password on each call' do
+      password_a = generate_password(20, uppercase: false, lowercase: false, number: false, special: true)
+      password_b = generate_password(20, uppercase: false, lowercase: false, number: false, special: true)
+      password_c = generate_password(20, uppercase: false, lowercase: false, number: false, special: true)
+      password_d = generate_password(20, uppercase: false, lowercase: false, number: false, special: true)
+      expect(password_a).to_not eq(password_b)
+      expect(password_a).to_not eq(password_c)
+      expect(password_a).to_not eq(password_d)
+      expect(password_b).to_not eq(password_c)
+      expect(password_b).to_not eq(password_d)
+      expect(password_c).to_not eq(password_d)
     end
   end
 
