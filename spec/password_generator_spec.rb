@@ -13,6 +13,11 @@ describe '#generate_password' do
     end
   end
 
+  it 'should not follow an alternating character set pattern' do
+    password = generate_password(40, lowercase: true, uppercase: true, number: true, special: true)
+    expect(password).to_not match(/([A-Z][a-z][0-9][!$%&*@^]){3,}/)
+  end
+
   context 'when \'uppercase\' is true' do
     it 'returns a password of only uppercase characters' do
       password = generate_password(15, lowercase: false, uppercase: true, number: false, special: false)
