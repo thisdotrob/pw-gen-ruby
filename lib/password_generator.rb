@@ -18,9 +18,9 @@ def initialise_character_sets(uppercase, lowercase, number, special)
   queue = []
 
   queue << 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if uppercase
-  queue << 'a' if lowercase
-  queue << '0' if number
-  queue << '!' if special
+  queue << 'abcdefghijklmnopqrstuvwxyz' if lowercase
+  queue << '0123456789' if number
+  queue << '!$%&*@^' if special
 
   queue
 end
