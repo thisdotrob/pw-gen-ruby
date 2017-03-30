@@ -4,8 +4,17 @@ def generate_password(length, uppercase:, lowercase:, number:, special:)
   password = ''
 
   while password.length < length
-    index = rand(charSet.length)
-    char = charSet[index]
+    char = nil
+
+    until char do
+      candidate = charSet[rand(charSet.length)]
+      if password.length <= 2
+        char = candidate
+      else
+        char = candidate unless password.chars[-2..-1].all? { |char| char === candidate }
+      end
+    end
+
     password += char
   end
 
