@@ -3,18 +3,20 @@ def generate_password(length, uppercase:, lowercase:, number:, special:)
 
   password = ''
 
-  while password.length < length
-    char = nil
-
-    until char do
-      candidate = get_random_char(charSet)
-      char = candidate unless would_be_3_chars_repeated(candidate, password)
-    end
-
-    password += char
-  end
+  password = append_random_char(password, charSet) until (password.length == length)
 
   password
+end
+
+def append_random_char(password, charSet)
+  char = nil
+
+  until char do
+    candidate = get_random_char(charSet)
+    char = candidate unless would_be_3_chars_repeated(candidate, password)
+  end
+
+  password += char
 end
 
 def initialise_character_sets(uppercase, lowercase, number, special)
