@@ -1,37 +1,37 @@
 def generate_password(length, uppercase:, lowercase:, number:, special:)
-  charSet = initialise_character_sets(uppercase, lowercase, number, special)
+  char_set = initialise_character_sets(uppercase, lowercase, number, special)
 
   password = ''
 
-  password = append_random_char(password, charSet) until (password.length == length)
+  password = append_random_char(password, char_set) until password.length == length
 
   password
 end
 
-def append_random_char(password, charSet)
+def append_random_char(password, char_set)
   char = nil
 
-  until char do
-    candidate = get_random_char(charSet)
+  until char
+    candidate = get_random_char(char_set)
     char = candidate unless would_be_3_chars_repeated(candidate, password)
   end
 
-  password += char
+  password + char
 end
 
 def initialise_character_sets(uppercase, lowercase, number, special)
-  charSet = ''
+  char_set = ''
 
-  charSet << '0123456789' if number
-  charSet << 'abcdefghijklmnopqrstuvwxyz' if lowercase
-  charSet << 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if uppercase
-  charSet << '!$%&*@^' if special
+  char_set << '0123456789' if number
+  char_set << 'abcdefghijklmnopqrstuvwxyz' if lowercase
+  char_set << 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if uppercase
+  char_set << '!$%&*@^' if special
 
-  charSet
+  char_set
 end
 
-def get_random_char(charSet)
-  charSet[rand(charSet.length)]
+def get_random_char(char_set)
+  char_set[rand(char_set.length)]
 end
 
 def would_be_3_chars_repeated(candidate, password)
@@ -39,5 +39,5 @@ def would_be_3_chars_repeated(candidate, password)
 end
 
 def same_as_last_two_chars(candidate, password)
-  password.chars[-2..-1].all? { |char| char === candidate }
+  password.chars[-2..-1].all? { |char| char == candidate }
 end

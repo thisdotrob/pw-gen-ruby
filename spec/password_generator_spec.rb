@@ -36,7 +36,6 @@ describe '#generate_password' do
     expect(password).to_not match(/([0-9][a-z][!$%£*@^][A-Z]){3,}/)
     expect(password).to_not match(/([0-9][a-z][A-Z][!$%£*@^]){3,}/)
 
-
     expect(password).to_not match(/([!$%£*@^][A-Z][a-z][0-9]){3,}/)
     expect(password).to_not match(/([!$%£*@^][A-Z][0-9][a-z]){3,}/)
     expect(password).to_not match(/([!$%£*@^][a-z][0-9][A-Z]){3,}/)
